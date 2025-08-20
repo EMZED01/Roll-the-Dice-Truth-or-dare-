@@ -138,11 +138,11 @@ rollBtn.addEventListener("click", () => {
 
   if (mode === "truth") {
     picked = getNext(truthQueue, truths);
-    diceResult.textContent = "🕊️ Truth";
+    diceResult.textContent = "🕊️ 𝗧𝗥𝗨𝗧𝗛 🕊️";
     card.classList.add("truth");
   } else if (mode === "dare") {
     picked = getNext(dareQueue, dares);
-    diceResult.textContent = "🎯 Dare";
+    diceResult.textContent = "🎯 𝗗𝗔𝗥𝗘 🎯";
     card.classList.add("dare");
   } else {
     if (Math.random() < 0.5) {
