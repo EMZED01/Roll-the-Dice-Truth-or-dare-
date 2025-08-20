@@ -114,7 +114,7 @@ function getRandom(arr) {
 
 rollBtn.addEventListener("click", () => {
   let dice = Math.floor(Math.random() * 6) + 1;
-  diceResult.textContent = `🎲 You rolled: ${dice}`;
+  diceResult.textContent = `🎲`;
 
   let mode = document.querySelector("input[name='mode']:checked").value;
   let picked = "";
