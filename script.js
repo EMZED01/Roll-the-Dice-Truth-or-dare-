@@ -51,27 +51,111 @@ const truths = [
   "Would you ever tattoo something about me?"
 ];
 
+const dares = [
+  "Send me a selfie right now.",
+  "Sing me a song in voice note 🎤",
+  "Text me 'I love you' in 5 different languages.",
+  "Pretend you’re proposing to me.",
+  "Take a silly selfie and set it as your DP for 10 minutes.",
+  "Write me a short poem on the spot.",
+  "Blow me a kiss through the camera 💋",
+  "Send me your best wink selfie.",
+  "Make a TikTok-style dance (just for me).",
+  "Whisper my name like a secret and send it.",
+  "Change my contact name to 'My Love ❤️'",
+  "Pretend you’re angry at me for 30 seconds.",
+  "Send a screenshot of your current screen.",
+  "Draw a heart and write my name in it.",
+  "Record yourself saying something super sweet.",
+  "Send me a GIF that describes how you feel about me.",
+  "Say 'I love you' in the funniest voice.",
+  "Spam me with 10 heart emojis in a row.",
+  "Pretend to cry because you miss me.",
+  "Write 'I belong to you' and send a pic.",
+  "Give me a compliment you’ve never said.",
+  "Send me your favorite throwback pic.",
+  "Close your eyes and say the first thing you think of me.",
+  "Describe me in 3 words.",
+  "Pretend you’re my personal chef and name my dish.",
+  "Draw a doodle of me and send it.",
+  "Send me a screenshot of your photo gallery (random one 👀).",
+  "Tell me something embarrassing that happened to you.",
+  "Pretend you’re writing wedding vows.",
+  "Say something romantic in a whisper and send it.",
+  "Send me a pick-up line you’d use on me.",
+  "Write my name in your notes with hearts around it.",
+  "Pretend to be me for 1 minute.",
+  "Make a funny face selfie.",
+  "Share one random fact about you I don’t know.",
+  "Describe our first date if you were planning it.",
+  "Sing me a lullaby.",
+  "Draw a cartoon version of us.",
+  "Tell me a fantasy you’ve had about us.",
+  "Say 'I’m yours forever' on audio.",
+  "Call me by the cheesiest pet name you can think of.",
+  "Send me a short romantic story with us in it.",
+  "Pretend you’re jealous of something random.",
+  "Take a picture of something that reminds you of me.",
+  "Write my initials somewhere on your hand.",
+  "Make a fake ad about how amazing I am.",
+  "Try to rap about me for 20 seconds.",
+  "Pretend we’re already married and greet me as your spouse.",
+  "Make a list of 3 things you love most about me.",
+  "Send me your best kiss emoji combo 💋❤️😘🔥"
+];
+
+// Elements
 const rollBtn = document.getElementById("rollBtn");
 const diceResult = document.getElementById("diceResult");
 const question = document.getElementById("question");
+const card = document.getElementById("card");
 
-function getRandom(arr) {
-  return arr[Math.floor(Math.random() * arr.length)];
+// Shuffle helper
+function shuffle(array) {
+  let copy = [...array];
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
+// Queues for non-repeating
+let truthQueue = shuffle(truths);
+let dareQueue = shuffle(dares);
+
+function getNext(queue, original) {
+  if (queue.length === 0) queue = shuffle(original);
+  return queue.shift();
 }
 
 rollBtn.addEventListener("click", () => {
-  let dice = Math.floor(Math.random() * 6) + 1;
-  diceResult.textContent = `🎲 You rolled: ${dice}`;
-
   let mode = document.querySelector("input[name='mode']:checked").value;
   let picked = "";
 
-  if (mode === "truth") picked = getRandom(truths);
-  else if (mode === "dare") picked = getRandom(dares);
-  else picked = Math.random() < 0.5 ? getRandom(truths) : getRandom(dares);
+  // remove old styles
+  card.classList.remove("truth", "dare");
+
+  if (mode === "truth") {
+    picked = getNext(truthQueue, truths);
+    diceResult.textContent = "🕊️ Truth";
+    card.classList.add("truth");
+  } else if (mode === "dare") {
+    picked = getNext(dareQueue, dares);
+    diceResult.textContent = "🎯 Dare";
+    card.classList.add("dare");
+  } else {
+    if (Math.random() < 0.5) {
+      picked = getNext(truthQueue, truths);
+      diceResult.textContent = "🕊️ Truth";
+      card.classList.add("truth");
+    } else {
+      picked = getNext(dareQueue, dares);
+      diceResult.textContent = "🎯 Dare";
+      card.classList.add("dare");
+    }
+  }
 
   question.textContent = picked;
-
-  // Show card with animation
-  document.getElementById("card").classList.add("show");
+  card.classList.add("show");
 });
