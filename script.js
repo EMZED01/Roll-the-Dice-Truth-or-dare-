@@ -23,7 +23,7 @@ const truths = [
   "22. Do you ever get jealous of my phone? 😂",
   "23. What’s something small I do that melts your heart?",
   "24. Would you rather cuddle all night or kiss all night?",
-  "25. If you could take me anywhere right now, where?",
+  "25. If you could take me anywhere right now, where would that be?",
   "26. Who said “I love you” first?",
   "27. When did you realize you were in love with me?",
   "28. What’s one thing you admire about me?",
