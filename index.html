@@ -8,14 +8,14 @@
 </head>
 <body>
   <h1>🎲 Roll the Dice - Truth or Dare 🎲</h1>
-  
+
   <button id="rollBtn">Roll Dice</button>
-  
   <p id="diceResult"></p>
 
-<div id="card">
-  <p id="question"></p>
-</div>
+  <div id="label"></div>
+  <div id="card">
+    <p id="question"></p>
+  </div>
 
   <div class="toggle">
     <label>
@@ -29,9 +29,24 @@
     </label>
   </div>
 
-  <footer>Made with ❤️ by EMZED <br>
-  <a href="https://twitter.com/iamemzed" target="_blank">@iamemzed</a>
-</footer>
+  <!-- Theme toggle -->
+  <div class="theme-toggle">
+    <label>
+      <input type="checkbox" id="themeSwitch"> 🌙 Dark Mode
+    </label>
+  </div>
+
+  <!-- History log -->
+  <div id="history">
+    <h3>📝 Last 5 Rolls</h3>
+    <ul id="historyList"></ul>
+  </div>
+
+  <footer>
+    Made with ❤️ by Emzed <br>
+    <a href="https://twitter.com/iamemzed" target="_blank">@iamemzed</a>
+  </footer>
+
   <script src="script.js"></script>
 </body>
 </html>
