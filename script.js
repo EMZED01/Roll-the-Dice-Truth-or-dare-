@@ -104,27 +104,75 @@ const dares = [
   "Send me your best kiss emoji combo 💋❤️😘🔥"
 ];
 
+// Elements
 const rollBtn = document.getElementById("rollBtn");
 const diceResult = document.getElementById("diceResult");
 const question = document.getElementById("question");
+const card = document.getElementById("card");
+const label = document.getElementById("label");
 
-function getRandom(arr) {
-  return arr[Math.floor(Math.random() * arr.length)];
+// Helper functions
+function shuffle(array) {
+  let copy = [...array];
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
 }
+
+// Shuffled queues
+let truthQueue = shuffle(truths);
+let dareQueue = shuffle(dares);
+
+function getNext(queue, original) {
+  if (queue.length === 0) {
+    queue = shuffle(original);
+  }
+  return queue.shift();
+}
+
+// Dice faces for fun 🎲
+const diceFaces = ["⚀","⚁","⚂","⚃","⚄","⚅"];
 
 rollBtn.addEventListener("click", () => {
   let dice = Math.floor(Math.random() * 6) + 1;
-  diceResult.textContent = `🎲`;
+  diceResult.textContent = `🎲 ${diceFaces[dice - 1]}`;
 
   let mode = document.querySelector("input[name='mode']:checked").value;
   let picked = "";
 
-  if (mode === "truth") picked = getRandom(truths);
-  else if (mode === "dare") picked = getRandom(dares);
-  else picked = Math.random() < 0.5 ? getRandom(truths) : getRandom(dares);
+  // Reset card + label
+  card.className = "";
+  card.classList.add("show");
+  label.className = "";
+  label.textContent = "";
+
+  if (mode === "truth") {
+    picked = getNext(truthQueue, truths);
+    card.classList.add("truth");
+    label.textContent = "🕊️ Truth 🕊️";
+    label.classList.add("truth-label");
+  } 
+  else if (mode === "dare") {
+    picked = getNext(dareQueue, dares);
+    card.classList.add("dare");
+    label.textContent = "🎯 Dare 🎯";
+    label.classList.add("dare-label");
+  } 
+  else {
+    if (Math.random() < 0.5) {
+      picked = getNext(truthQueue, truths);
+      card.classList.add("truth");
+      label.textContent = "🕊️ Truth 🕊️";
+      label.classList.add("truth-label");
+    } else {
+      picked = getNext(dareQueue, dares);
+      card.classList.add("dare");
+      label.textContent = "🎯 Dare 🎯";
+      label.classList.add("dare-label");
+    }
+  }
 
   question.textContent = picked;
-
-  // Show card with animation
-  document.getElementById("card").classList.add("show");
 });
