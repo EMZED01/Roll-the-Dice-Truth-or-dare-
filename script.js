@@ -32,4 +32,7 @@ rollBtn.addEventListener("click", () => {
   else picked = Math.random() < 0.5 ? getRandom(truths) : getRandom(dares);
 
   question.textContent = picked;
+
+  // Show card with animation
+  document.getElementById("card").classList.add("show");
 });
