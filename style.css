@@ -45,6 +45,19 @@ button:hover {
   animation: pop 0.4s ease-in-out;
 }
 
+/* Truth and Dare card styles */
+#card.truth {
+  background: #fff3f6;        /* soft pink */
+  border: 2px solid #d81b60;  /* bold pink */
+  color: #4e342e;
+}
+
+#card.dare {
+  background: #efebe9;        /* soft brown */
+  border: 2px solid #6d4c41;  /* bold brown */
+  color: #3e2723;
+}
+
 @keyframes pop {
   0% { transform: scale(0.8); opacity: 0; }
   100% { transform: scale(1); opacity: 1; }
