@@ -147,11 +147,11 @@ rollBtn.addEventListener("click", () => {
   } else {
     if (Math.random() < 0.5) {
       picked = getNext(truthQueue, truths);
-      diceResult.textContent = "🕊️ Truth";
+      diceResult.textContent = "🕊️ 𝗧𝗥𝗨𝗧𝗛 🕊️";
       card.classList.add("truth");
     } else {
       picked = getNext(dareQueue, dares);
-      diceResult.textContent = "🎯 Dare";
+      diceResult.textContent = "🎯 𝗗𝗔𝗥𝗘 🎯";
       card.classList.add("dare");
     }
   }
