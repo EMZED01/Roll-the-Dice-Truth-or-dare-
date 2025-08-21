@@ -20,7 +20,7 @@ const truths = [
   "19. If we were in a movie, what genre would it be?",
   "20. Do you ever stalk my old pictures/messages?",
   "21. What’s the boldest thing you’d do for me in public?",
-  "22. Do you ever get jealous of my phone? 😂",
+  "22. What’s the most daring thing you’ve done for love?",
   "23. What’s something small I do that melts your heart?",
   "24. Would you rather cuddle all night or kiss all night?",
   "25. If you could take me anywhere right now, where would that be?",
